@@ -34,7 +34,7 @@ public class Sklep {
         } while (!"w".equalsIgnoreCase(operacja));
     }
 
-    private static void sprawdzenieCyfry(double value) {
+/*    private static void sprawdzenieCyfry(double value) {
         int rozmiar = Magazyn.rozmiarMapy;
         if (rozmiar <= value && value >= rozmiar) {
            System.out.println("nieprawidłowa wartość!");
@@ -47,10 +47,21 @@ public class Sklep {
         double value = odczytajLiczbe();
         sprawdzenieCyfry(value);
         magazyn.sprzedajKomputer(value);
+    }*/
+    private static void sprzedajKomputer(Magazyn magazyn) {
+        System.out.println("Podaj lp. komputera który checesz usunąć od 0 do " + magazyn.elementy.size());
+//        magazyn.listaSprzetu();
+        int value = getValue(magazyn);
+        magazyn.sprzedajKomputer(value);
     }
 
     private static void obliczMoc(Magazyn magazyn) {
-        System.out.print("Podaj lp. komputera którego checesz obliczyć moc");
+        System.out.println("Podaj lp. komputera którego checesz obliczyć moc");
+        int value = getValue(magazyn);
+        magazyn.mocOperacyjnaKomputera(value);
+    }
+
+    private static int getValue(Magazyn magazyn) {
         magazyn.listaSprzetu();
         int value=0;
         boolean sprawdz;
@@ -60,14 +71,14 @@ public class Sklep {
                 value = odczytajLiczbe();
                 int rozmiar = Magazyn.rozmiarMapy;
                 if (rozmiar <= value && value >= rozmiar) {
-                    System.out.println("nieprawidłowa wartość!");
+                    System.out.println("Nieprawidłowa wartość! Wybierz komputer z listy");
                     sprawdz = true;
                 }
             }catch (NullPointerException ex){
                 System.out.println("Nieprawidłowa wartość!");
             }
         }while (sprawdz);
-        magazyn.mocOperacyjnaKomputera(value);
+        return value;
     }
 
     private static Komputer dodajNowySprzetDoMagazynu(Magazyn magazyn) {
@@ -112,7 +123,6 @@ public class Sklep {
                 System.out.println("Niepoprawne dane, wpisz ponownie!");
             }
         } while (!type);
-
         return wartosc;
     }
 
