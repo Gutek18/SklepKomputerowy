@@ -37,7 +37,7 @@ public class Sklep {
     private static void sprawdzenieCyfry(double value) {
         int rozmiar = Magazyn.rozmiarMapy;
         if (rozmiar <= value && value >= rozmiar) {
-           System.out.println("nieprawidłowa wartość");
+           System.out.println("nieprawidłowa wartość!");
         }
     }
 
@@ -52,7 +52,21 @@ public class Sklep {
     private static void obliczMoc(Magazyn magazyn) {
         System.out.print("Podaj lp. komputera którego checesz obliczyć moc");
         magazyn.listaSprzetu();
-        double value = odczytajLiczbe();
+        int value=0;
+        boolean sprawdz;
+        do {
+            sprawdz=false;
+            try {
+                value = odczytajLiczbe();
+                int rozmiar = Magazyn.rozmiarMapy;
+                if (rozmiar <= value && value >= rozmiar) {
+                    System.out.println("nieprawidłowa wartość!");
+                    sprawdz = true;
+                }
+            }catch (NullPointerException ex){
+                System.out.println("Nieprawidłowa wartość!");
+            }
+        }while (sprawdz);
         magazyn.mocOperacyjnaKomputera(value);
     }
 
@@ -66,21 +80,20 @@ public class Sklep {
         return komputer;
     }
 
-    private static double odczytajLiczbe() {
-        Double wartosc = Double.valueOf(0);
+    private static int odczytajLiczbe() {
+        Integer wartosc = Integer.valueOf(0);
         boolean type = false;
         do {
             Scanner wpisz = new Scanner(System.in);
             try {
-                wartosc = wpisz.nextDouble();
-                if (wartosc instanceof Double) {
+                wartosc = wpisz.nextInt();
+                if (wartosc instanceof Integer) {
                     type = true;
                 }
             } catch (InputMismatchException ex) {
                 System.out.println("Niepoprawne dane, wpisz ponownie!");
             }
         } while (!type);
-
         return wartosc;
     }
 

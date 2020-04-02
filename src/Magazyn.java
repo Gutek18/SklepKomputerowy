@@ -10,7 +10,7 @@ public class Magazyn {
         rozmiarMapy++;
     }
 
-    double mocOperacyjnaKomputera(double key) {
+    double mocOperacyjnaKomputera(int key) {
         Komputer comp = elementy.get(key);
         double moc = (comp.getProcesorCzestotliwosc() * (comp.getRam() * comp.getRamTaktowanie()));
         String value = comp.toString();
