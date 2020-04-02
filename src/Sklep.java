@@ -34,17 +34,15 @@ public class Sklep {
         } while (!"w".equalsIgnoreCase(operacja));
     }
 
-    private static String sprawdzenieCyfry(double value) {
-        Magazyn magazyn = new Magazyn();
-        String komunikat = "";
-        if ((magazyn.elementy.size() - 1) <= value && value >= (magazyn.elementy.size() - 1)) {
-            komunikat = "nieprawidłowa wartośc";
+    private static void sprawdzenieCyfry(double value) {
+        int rozmiar = Magazyn.rozmiarMapy;
+        if (rozmiar <= value && value >= rozmiar) {
+           System.out.println("nieprawidłowa wartość");
         }
-        return komunikat;
     }
 
     private static void sprzedajKomputer(Magazyn magazyn) {
-        System.out.println("Podaj lp. komputera który checesz usunąć od 0 do " + (magazyn.elementy.size() - 1));
+        System.out.println("Podaj lp. komputera który checesz usunąć od 0 do " + magazyn.elementy.size());
         magazyn.listaSprzetu();
         double value = odczytajLiczbe();
         sprawdzenieCyfry(value);

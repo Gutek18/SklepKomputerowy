@@ -3,11 +3,11 @@ import java.util.Map;
 
 public class Magazyn {
     Map<Integer, Komputer> elementy = new HashMap<>();
-    private int i = 1;
+    protected static int rozmiarMapy = 1;
 
     void dodajElementDoSklepu(Komputer sprzet) {
-        elementy.put(i, sprzet);
-        i++;
+        elementy.put(rozmiarMapy, sprzet);
+        rozmiarMapy++;
     }
 
     double mocOperacyjnaKomputera(double key) {
