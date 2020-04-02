@@ -5,7 +5,6 @@ public class Sklep {
 
 
     public static void main(String[] args) {
-
         opcjeWyboru();
     }
 
@@ -35,7 +34,7 @@ public class Sklep {
     }
 
     private static void sprzedajKomputer(Magazyn magazyn) {
-        System.out.println("Podaj lp. komputera który checesz usunąć od 0 do " + magazyn.elementy.size());
+        System.out.println("Podaj lp. komputera który checesz usunąć " + magazyn.elementy.keySet());
         int value = getValue(magazyn);
         magazyn.sprzedajKomputer(value);
     }
