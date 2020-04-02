@@ -27,7 +27,7 @@ public class Magazyn {
         System.out.println("Liczba dostepnych komputerów: " + elementy.size());
     }
 
-    void sprzedajKomputer(double key) {
+    void sprzedajKomputer(int key) {
         elementy.remove(key);
     }
 }

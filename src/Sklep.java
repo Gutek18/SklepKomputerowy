@@ -34,23 +34,8 @@ public class Sklep {
         } while (!"w".equalsIgnoreCase(operacja));
     }
 
-/*    private static void sprawdzenieCyfry(double value) {
-        int rozmiar = Magazyn.rozmiarMapy;
-        if (rozmiar <= value && value >= rozmiar) {
-           System.out.println("nieprawidłowa wartość!");
-        }
-    }
-
     private static void sprzedajKomputer(Magazyn magazyn) {
         System.out.println("Podaj lp. komputera który checesz usunąć od 0 do " + magazyn.elementy.size());
-        magazyn.listaSprzetu();
-        double value = odczytajLiczbe();
-        sprawdzenieCyfry(value);
-        magazyn.sprzedajKomputer(value);
-    }*/
-    private static void sprzedajKomputer(Magazyn magazyn) {
-        System.out.println("Podaj lp. komputera który checesz usunąć od 0 do " + magazyn.elementy.size());
-//        magazyn.listaSprzetu();
         int value = getValue(magazyn);
         magazyn.sprzedajKomputer(value);
     }
@@ -63,10 +48,10 @@ public class Sklep {
 
     private static int getValue(Magazyn magazyn) {
         magazyn.listaSprzetu();
-        int value=0;
+        int value = 0;
         boolean sprawdz;
         do {
-            sprawdz=false;
+            sprawdz = false;
             try {
                 value = odczytajLiczbe();
                 int rozmiar = Magazyn.rozmiarMapy;
@@ -74,10 +59,10 @@ public class Sklep {
                     System.out.println("Nieprawidłowa wartość! Wybierz komputer z listy");
                     sprawdz = true;
                 }
-            }catch (NullPointerException ex){
+            } catch (NullPointerException ex) {
                 System.out.println("Nieprawidłowa wartość!");
             }
-        }while (sprawdz);
+        } while (sprawdz);
         return value;
     }
 
