@@ -2,15 +2,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Magazyn {
-    private int i = 1;
     Map<Integer, Komputer> elementy = new HashMap<>();
+    private int i = 1;
 
     void dodajElementDoSklepu(Komputer sprzet) {
         elementy.put(i, sprzet);
         i++;
     }
 
-    double mocOperacyjnaKomputera(int key) {
+    double mocOperacyjnaKomputera(double key) {
         Komputer comp = elementy.get(key);
         double moc = (comp.getProcesorCzestotliwosc() * (comp.getRam() * comp.getRamTaktowanie()));
         String value = comp.toString();
@@ -24,9 +24,10 @@ public class Magazyn {
             Komputer v = entry.getValue();
             System.out.println("Lp: " + k + ", " + v);
         }
+        System.out.println("Liczba dostepnych komputerów: " + elementy.size());
     }
 
-    void sprzedajKomputer(int key) {
+    void sprzedajKomputer(double key) {
         elementy.remove(key);
     }
 }
