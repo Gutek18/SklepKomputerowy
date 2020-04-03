@@ -43,7 +43,6 @@ public class Operacje {
         System.out.println("Podaj lp. komputera który checesz usunąć " + magazyn.elementy.keySet());
         int liczba = magazyn.elementy.size();
         Set<Integer> tab = magazyn.elementy.keySet();
-        System.out.println(tab);
         if (liczba <= 0) {
             System.out.println("Nie ma komputerów na sprzedaż!");
         } else {
@@ -57,9 +56,24 @@ public class Operacje {
     }
 
     protected static void obliczMoc(Magazyn magazyn) {
-        System.out.println("Podaj lp. komputera którego checesz obliczyć moc");
-        int value = getValue(magazyn);
-        magazyn.mocOperacyjnaKomputera(value);
+        Set<Integer> tab = magazyn.elementy.keySet();
+        int liczba = magazyn.elementy.size();
+        int value = 0;
+        if (liczba <= 0) {
+            System.out.println("Nie ma żadnych komputerów do obliczenia mocy");
+        } else {
+            System.out.println("Podaj lp. komputera którego checesz obliczyć moc");
+            try {
+                value = getValue(magazyn);
+            } catch (NullPointerException e) {
+                System.out.println("To nie jest liczba!");
+            } catch (InputMismatchException ex) {
+                System.out.println("To nie jest liczba!");
+            }
+            if (tab.contains(value)) {
+                magazyn.mocOperacyjnaKomputera(value);
+            }
+        }
     }
 
     protected static int getValue(Magazyn magazyn) {
@@ -84,23 +98,6 @@ public class Operacje {
         } while (!sprawdz);
         return value;
     }
-
- /*   protected static int odczytajLiczbe() {
-        Integer wartosc = Integer.valueOf(0);
-        boolean type = false;
-        do {
-            Scanner wpisz = new Scanner(System.in);
-            try {
-                wartosc = wpisz.nextInt();
-                if (wartosc instanceof Integer) {
-                    type = true;
-                }
-            } catch (InputMismatchException ex) {
-                System.out.println("Niepoprawne dane, wpisz ponownie!");
-            }
-        } while (!type);
-        return wartosc;
-    }*/
 
     protected static double odczytajWartoscLiczbowa(String nazwaParametru) {
         Double wartosc = Double.valueOf(0);
