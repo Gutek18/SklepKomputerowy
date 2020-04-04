@@ -27,6 +27,7 @@ public class Operacje {
                 sprzedajKomputer(magazyn);
             }
         } while (!"w".equalsIgnoreCase(operacja));
+        System.out.println("Koniec programu!");
     }
 
     protected static Komputer dodajNowySprzetDoMagazynu(Magazyn magazyn) {
@@ -40,29 +41,29 @@ public class Operacje {
     }
 
     protected static void sprzedajKomputer(Magazyn magazyn) {
-        System.out.println("Podaj lp. komputera który checesz usunąć " + magazyn.elementy.keySet());
         int liczba = magazyn.elementy.size();
-        Set<Integer> tab = magazyn.elementy.keySet();
-        if (liczba <= 0) {
-            System.out.println("Nie ma komputerów na sprzedaż!");
-        } else {
-            int value = getValue(magazyn);
-            if (tab.contains(value)) {
-                magazyn.sprzedajKomputer(value);
+        boolean type = false;
+        do {
+            System.out.println("Podaj lp. komputera który checesz usunąć " + magazyn.elementy.keySet());
+            int value = catchEx(magazyn);
+            if (liczba <= 0) {
+                System.out.println("Nie ma komputerów na sprzedaż!");
             } else {
-                System.out.println("Nie ma takiego komputera na sprzedaż!");
+                if (magazyn.elementy.containsKey(value)) {
+                    magazyn.sprzedajKomputer(value);
+                    type = true;
+                } else {
+                    System.out.println("Nieprawidłowa wartość");
+                    type = false;
+                }
             }
-        }
+        } while (!type);
     }
 
-    protected static void obliczMoc(Magazyn magazyn) {
-        Set<Integer> tab = magazyn.elementy.keySet();
-        int liczba = magazyn.elementy.size();
+    private static int catchEx(Magazyn magazyn) {
         int value = 0;
-        if (liczba <= 0) {
-            System.out.println("Nie ma żadnych komputerów do obliczenia mocy");
-        } else {
-            System.out.println("Podaj lp. komputera którego checesz obliczyć moc");
+        boolean condition;
+        do {
             try {
                 value = getValue(magazyn);
             } catch (NullPointerException e) {
@@ -70,6 +71,19 @@ public class Operacje {
             } catch (InputMismatchException ex) {
                 System.out.println("To nie jest liczba!");
             }
+            condition = false;
+        } while (condition);
+        return value;
+    }
+
+    protected static void obliczMoc(Magazyn magazyn) {
+        int liczba = magazyn.elementy.size();
+        if (liczba <= 0) {
+            System.out.println("Nie ma żadnych komputerów do obliczenia mocy");
+        } else {
+            System.out.println("Podaj lp. komputera którego checesz obliczyć moc");
+            Set<Integer> tab = magazyn.elementy.keySet();
+            int value = catchEx(magazyn);
             if (tab.contains(value)) {
                 magazyn.mocOperacyjnaKomputera(value);
             }
@@ -124,4 +138,3 @@ public class Operacje {
         return nazwa;
     }
 }
-
